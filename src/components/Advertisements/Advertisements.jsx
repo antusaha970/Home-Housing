@@ -7,11 +7,15 @@ const Advertisements = () => {
   const [advertisements, setAdvertisements] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [category, setCategory] = useState("");
+  const [orderBy, setOrderBy] = useState("price");
   useEffect(() => {
     const fetchAllAdvertisements = async () => {
       try {
         setIsLoading(true);
-        const response = await client.get(`/api/advertise/?page=${page}`);
+        const response = await client.get(
+          `/api/advertise/?page=${page}&category=${category}&order_by=${orderBy}`
+        );
         setAdvertisements(response?.data);
       } catch (error) {
         console.error({ error });
@@ -20,7 +24,7 @@ const Advertisements = () => {
       }
     };
     fetchAllAdvertisements();
-  }, [page]);
+  }, [page, category, orderBy]);
 
   const handlePagination = (type) => {
     if (type == "prev") {
@@ -32,7 +36,11 @@ const Advertisements = () => {
         setPage((curState) => curState + 1);
       }
     }
-    // console.log(advertisements);
+  };
+
+  const handleOrderBy = (event) => {
+    setPage(1);
+    setOrderBy(event.target.value);
   };
 
   return (
@@ -40,6 +48,72 @@ const Advertisements = () => {
       <div className="row  g-3">
         <div className="col-12 col-sm-4 col-md-2">
           Filter by category <i className="fa-solid fa-arrow-up-z-a"></i>
+          <ul className="categoriesList mt-3">
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("");
+              }}
+            >
+              All categories
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("home");
+              }}
+            >
+              home
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("family");
+              }}
+            >
+              family
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("office");
+              }}
+            >
+              office
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("bachelor");
+              }}
+            >
+              bachelor
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("shop");
+              }}
+            >
+              shop
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("sublet");
+              }}
+            >
+              sublet
+            </li>
+            <li
+              onClick={() => {
+                setPage(1);
+                setCategory("hostel");
+              }}
+            >
+              hostel
+            </li>
+          </ul>
         </div>
         <div className="col-12 col-sm-8 col-md-10">
           <div className="d-flex justify-content-between">
@@ -49,12 +123,13 @@ const Advertisements = () => {
               <select
                 className="form-select"
                 aria-label="Default select example"
+                onChange={handleOrderBy}
               >
                 <option selected>Price or rating</option>
-                <option value="1">Minimum price</option>
-                <option value="2">Maximum price</option>
-                <option value="1">Minimum rating</option>
-                <option value="2">Maximum rating</option>
+                <option value="price">Minimum price</option>
+                <option value="-price">Maximum price</option>
+                <option value="rating">Minimum rating</option>
+                <option value="-rating">Maximum rating</option>
               </select>
             </div>
           </div>
@@ -74,21 +149,21 @@ const Advertisements = () => {
             <div>
               <ul className="pagination">
                 <li className="page-item">
-                  <a
+                  <button
                     className="page-link"
                     onClick={() => handlePagination("prev")}
                   >
                     Previous
-                  </a>
+                  </button>
                 </li>
 
                 <li className="page-item">
-                  <a
+                  <button
                     className="page-link"
                     onClick={() => handlePagination("next")}
                   >
                     Next
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
