@@ -3,6 +3,7 @@ import Homepage from "./pages/Hompage/Homepage";
 import Navbar from "./components/shared/Navbar/Navbar";
 import { useState } from "react";
 import { IsLoggedInContext } from "./context/Allcontext";
+import Footer from "./components/shared/Footer/Footer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
       </Routes>
+      <Footer />
     </IsLoggedInContext.Provider>
   );
 }

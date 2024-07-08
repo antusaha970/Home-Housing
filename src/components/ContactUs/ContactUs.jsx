@@ -13,7 +13,7 @@ const ContactUs = () => {
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control inputFiledBg"
                 id="emailForContact"
                 placeholder="name@example.com"
               />
@@ -24,7 +24,7 @@ const ContactUs = () => {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control inputFiledBg"
                 id="subjectforcontact"
                 placeholder="write subject here"
               />
@@ -35,7 +35,7 @@ const ContactUs = () => {
               </label>
               <textarea
                 rows={5}
-                className="form-control"
+                className="form-control inputFiledBg"
                 id="subject for contact"
                 placeholder="write subject here"
               />
