@@ -2,6 +2,7 @@ import { useContext } from "react";
 import logo from "../../../assets/logo.png";
 import "./navbar.css";
 import { IsLoggedInContext } from "../../../context/Allcontext";
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const [loggedIn] = useContext(IsLoggedInContext);
 
@@ -27,28 +28,35 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
-                  className="nav-link active text-18"
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active nav-link text-18" : "nav-link text-18"
+                  }
                   aria-current="page"
-                  href="#"
+                  to="/"
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-18" href="#">
+                <NavLink
+                  to="advertisements"
+                  className={({ isActive }) =>
+                    isActive ? "active nav-link text-18" : "nav-link text-18"
+                  }
+                >
                   Advertisements
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-18" href="#about">
+                <Link className="nav-link text-18" to="/">
                   About us
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-18" href="#contact">
+                <Link className="nav-link text-18" to="/">
                   Contact us
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="d-flex">
