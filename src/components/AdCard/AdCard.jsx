@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import "./adcard.css";
 const AdCard = ({ ad }) => {
   const {
@@ -11,6 +12,7 @@ const AdCard = ({ ad }) => {
     category,
     owner: { first_name, last_name },
     price,
+    id,
   } = ad;
 
   const cover_image =
@@ -65,9 +67,12 @@ const AdCard = ({ ad }) => {
               Fare: <span className="fw-bold">{price} BDT</span>{" "}
             </p>
             <div className="widget-49-meeting-action mt-3">
-              <a href="#" className="btn btn-sm btn-flash-border-success">
+              <Link
+                to={`/advertisements/${id}`}
+                className="btn btn-sm btn-flash-border-success"
+              >
                 View details
-              </a>
+              </Link>
             </div>
           </div>
         </div>
