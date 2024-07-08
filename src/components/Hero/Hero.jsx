@@ -18,8 +18,13 @@ const Hero = () => {
             </p>
             <button className="btn btn-success">Book now</button>
           </div>
-          <div className="col-12 col-sm-12 col-md-6" data-aos="fade-left">
-            <img src={hero} alt="hero" className="img-fluid" />
+          <div className="col-12 col-sm-12 col-md-6">
+            <img
+              src={hero}
+              alt="hero"
+              data-aos="fade-left"
+              className="img-fluid"
+            />
           </div>
         </div>
       </div>

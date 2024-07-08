@@ -24,7 +24,7 @@ const OurPartners = () => {
   };
   console.log(partnersData);
   return (
-    <div className="container">
+    <div className="container my-5">
       <h2 className="text-center fw-bold my-5">Our partners</h2>
       <div className="slider-container">
         <Slider {...settings}>
