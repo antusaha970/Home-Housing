@@ -1,5 +1,6 @@
 import AboutOurService from "../AboutOurService/AboutOurService";
 import CallToAction from "../CallToAction/CallToAction";
+import ContactUs from "../ContactUs/ContactUs";
 import Hero from "../Hero/Hero";
 import OurPartners from "../OurPartners/OurPartners";
 
@@ -10,6 +11,7 @@ const Home = () => {
       <OurPartners />
       <AboutOurService />
       <CallToAction />
+      <ContactUs />
     </>
   );
 };
