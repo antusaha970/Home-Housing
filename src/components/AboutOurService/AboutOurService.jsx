@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import about_our_service_png from "../../assets/stock/about_our_service.png";
 import "./aboutourservice.css";
 const AboutOurService = () => {
@@ -21,9 +22,12 @@ const AboutOurService = () => {
             importantly, in the communities where we live and work, we are
             trusted insiders, advisors and friends.
           </p>
-          <button className="btn btn-dark">
+          <Link to="/advertisements" className="btn btn-dark ms-1">
             Search for House <i className="fa-solid fa-arrow-right"></i>
-          </button>
+          </Link>
+          <Link to="/advertisements" className="btn btn-success ms-1">
+            Give advertisement <i className="fa-solid fa-arrow-right"></i>
+          </Link>
         </div>
       </div>
     </section>

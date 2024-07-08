@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import hero from "../../assets/hero.png";
 import "./hero.css";
 
@@ -18,9 +19,12 @@ const Hero = () => {
               and exclusive support. Save time and money. Ideal for you and your
               team.
             </p>
-            <button className="btn btn-success">
+            <Link to="/advertisements" className="btn btn-success ms-1">
               Book now <i className="fa-solid fa-arrow-right"></i>
-            </button>
+            </Link>
+            <Link to="/advertisements" className="btn btn-dark ms-1">
+              Host your property <i className="fa-solid fa-arrow-right"></i>
+            </Link>
           </div>
           <div className="col-12 col-sm-12 col-md-6">
             <img

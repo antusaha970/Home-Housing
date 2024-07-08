@@ -1,6 +1,7 @@
 import AboutOurService from "../AboutOurService/AboutOurService";
 import CallToAction from "../CallToAction/CallToAction";
 import ContactUs from "../ContactUs/ContactUs";
+import GiveRent from "../GiveRent/GiveRent";
 import Hero from "../Hero/Hero";
 import OurPartners from "../OurPartners/OurPartners";
 
@@ -11,6 +12,7 @@ const Home = () => {
       <OurPartners />
       <AboutOurService />
       <CallToAction />
+      <GiveRent />
       <ContactUs />
     </>
   );

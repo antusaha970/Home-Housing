@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./CallToAction.css";
 const CallToAction = () => {
   return (
@@ -8,9 +9,9 @@ const CallToAction = () => {
           Please visit our verified home advertisement for a secure and
           afortable home
         </p>
-        <button className="btn btn-success">
+        <Link to="/advertisements" className="btn btn-success">
           Visit advertisements <i className="fa-solid fa-arrow-right"></i>
-        </button>
+        </Link>
       </div>
     </section>
   );
