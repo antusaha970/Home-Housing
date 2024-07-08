@@ -1,4 +1,5 @@
 import hero from "../../assets/hero.png";
+import "./hero.css";
 
 const Hero = () => {
   return (
@@ -7,7 +8,7 @@ const Hero = () => {
         <div className="row justify-content-center align-items-center">
           <div className="col-12 col-sm-12 col-md-6">
             <h3 className="fst-italic">CORPORATE HOUSING</h3>
-            <h1 className="fw-bold">
+            <h1 className="fw-bold hero-text">
               Rent Apartments for Your Company/Family/Yourself
             </h1>
             <p>
