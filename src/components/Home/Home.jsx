@@ -1,7 +1,11 @@
-import React from "react";
+import Hero from "../Hero/Hero";
 
 const Home = () => {
-  return <h1>this is home</h1>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 
 export default Home;
