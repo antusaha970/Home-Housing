@@ -62,9 +62,11 @@ const Footer = () => {
                   <input
                     id="newsletter1"
                     type="text"
-                    className="form-control"
+                    className="form-control inputFiledBg"
                     placeholder="Email address"
+                    required
                   />
+
                   <button className="btn btn-dark" type="button">
                     Subscribe
                   </button>

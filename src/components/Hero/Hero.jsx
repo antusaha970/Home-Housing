@@ -7,7 +7,9 @@ const Hero = () => {
       <div className="container my-5">
         <div className="row justify-content-center align-items-center">
           <div className="col-12 col-sm-12 col-md-6">
-            <h3 className="fst-italic">CORPORATE HOUSING</h3>
+            <h3 className="fst-italic">
+              CORPORATE HOUSING <i className="fa-solid fa-building-wheat"></i>
+            </h3>
             <h1 className="fw-bold hero-text">
               Rent Apartments for Your Company/Family/Yourself
             </h1>
@@ -16,7 +18,9 @@ const Hero = () => {
               and exclusive support. Save time and money. Ideal for you and your
               team.
             </p>
-            <button className="btn btn-success">Book now</button>
+            <button className="btn btn-success">
+              Book now <i className="fa-solid fa-arrow-right"></i>
+            </button>
           </div>
           <div className="col-12 col-sm-12 col-md-6">
             <img

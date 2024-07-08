@@ -21,7 +21,9 @@ const AboutOurService = () => {
             importantly, in the communities where we live and work, we are
             trusted insiders, advisors and friends.
           </p>
-          <button className="btn btn-dark">Search for House</button>
+          <button className="btn btn-dark">
+            Search for House <i className="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </section>

@@ -8,7 +8,9 @@ const CallToAction = () => {
           Please visit our verified home advertisement for a secure and
           afortable home
         </p>
-        <button className="btn btn-success">Visit advertisements</button>
+        <button className="btn btn-success">
+          Visit advertisements <i className="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
     </section>
   );
