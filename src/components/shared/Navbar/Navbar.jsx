@@ -67,6 +67,13 @@ const Navbar = () => {
                   Contact us
                 </Link>
               </li>
+              {loggedIn && (
+                <li className="nav-item">
+                  <Link className="nav-link text-18" to="/post_advertisement">
+                    Post advertisements
+                  </Link>
+                </li>
+              )}
             </ul>
             <div className="d-flex">
               {!loggedIn ? (

@@ -95,8 +95,6 @@ const Profile = () => {
     }
   };
 
-  console.log(profilePicture);
-
   return (
     <div className="container rounded bg-white mt-5 mb-5">
       <div className="row">
@@ -141,7 +139,9 @@ const Profile = () => {
                 <Link className="fw-bold">View received booking request</Link>
               </li>
               <li>
-                <Link className="fw-bold">Publish advertisement</Link>
+                <Link to="/post_advertisement" className="fw-bold">
+                  Publish advertisement
+                </Link>
               </li>
             </ul>
             {/* profile navigation */}
