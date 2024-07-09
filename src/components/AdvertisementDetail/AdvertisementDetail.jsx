@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import PhotoAlbum from "react-photo-album";
 import client from "../../api_client/api_client";
 import Loader from "../shared/Loader/Loader";
 import "./AdvertisementDetail.css";
-import Slider from "react-slick";
 
-const settings = {
-  dots: true,
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  autoplay: true,
-  speed: 2000,
-  autoplaySpeed: 2000,
-  cssEase: "linear",
-};
+import { IsLoggedInContext } from "../../context/Allcontext";
+import { toast } from "react-toastify";
 
 const AdvertisementDetail = () => {
   const { id } = useParams();
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [loggedIn, setLoggedIn] = useContext(IsLoggedInContext);
+  const navigate = useNavigate();
   let photos = [];
   useEffect(() => {
     const getAdvertisementDetails = async () => {
@@ -51,7 +44,30 @@ const AdvertisementDetail = () => {
     photos.push(src);
   });
 
-  console.log(reviews);
+  const handleAddToFavorite = async () => {
+    if (!loggedIn) {
+      toast.error("Please login first", {
+        position: "top-right",
+      });
+      navigate("/login");
+    } else {
+      try {
+        const response = await client.post(
+          `/api/advertise/${id}/add_to_favorite/`
+        );
+        if (response.status == 201) {
+          toast.success("Added to favorite", {
+            position: "top-right",
+          });
+        }
+      } catch (error) {
+        console.error({ error });
+        toast.error("Something went wrong", {
+          position: "top-right",
+        });
+      }
+    }
+  };
 
   return (
     <section className="container my-5">
@@ -116,7 +132,7 @@ const AdvertisementDetail = () => {
           <button className="btn btn-success ms-2">
             Book now <i className="fa-solid fa-square-check"></i>
           </button>
-          <button className="btn btn-dark ms-2">
+          <button className="btn btn-dark ms-2" onClick={handleAddToFavorite}>
             Add to favorite <i className="fa-regular fa-heart"></i>
           </button>
         </div>
