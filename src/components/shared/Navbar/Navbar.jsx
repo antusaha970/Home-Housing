@@ -70,7 +70,9 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <button className="btn btn-success me-2">Profile</button>
+                  <Link to="/profile" className="btn btn-success me-2">
+                    Profile
+                  </Link>
                   <button className="btn btn-dark me-2">Logout</button>
                 </>
               )}

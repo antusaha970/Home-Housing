@@ -12,6 +12,8 @@ import AdvertisementPage from "./pages/AdvertisementPage/AdvertisementPage";
 import AdvertisementDetailsPage from "./pages/AdvertisementDetailsPage/AdvertisementDetailsPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,6 +30,14 @@ function App() {
         />
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute isSignedIn={loggedIn}>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </IsLoggedInContext.Provider>
