@@ -133,7 +133,9 @@ const Profile = () => {
             <p className="fw-bold mt-3 mb-0">Navigation</p>
             <ul className="text-start">
               <li>
-                <Link className="fw-bold">View my bookings</Link>
+                <Link to="/my_bookings" className="fw-bold">
+                  View my bookings
+                </Link>
               </li>
               <li>
                 <Link className="fw-bold">View received booking request</Link>
