@@ -3,6 +3,8 @@ import "./profile.css";
 import { UserDetailsContext } from "../../context/Allcontext";
 import { useForm } from "react-hook-form";
 import client from "../../api_client/api_client";
+import { Link } from "react-router-dom";
+import backendURL from "../../api_client/backend_domain";
 const Profile = () => {
   const [userDetails] = useContext(UserDetailsContext);
   const {
@@ -19,6 +21,7 @@ const Profile = () => {
   );
   const [isAvailableProfile, setIsAvailableProfile] = useState(false);
   const [profileId, setProfileId] = useState(null);
+  const [favoriteAds, setFavoriteAds] = useState([]);
 
   useEffect(() => {
     const getProfileDetails = async () => {
@@ -38,8 +41,19 @@ const Profile = () => {
         setLoading(false);
       }
     };
+    const getFavoritesAdd = async () => {
+      try {
+        const response = await client.get("/api/accounts/favorite_ads/");
+        setFavoriteAds(response.data);
+      } catch (error) {
+        console.log({ error });
+      }
+    };
     getProfileDetails();
+    getFavoritesAdd();
   }, [profileId]);
+
+  console.log(favoriteAds);
 
   const onSubmit = async (data) => {
     try {
@@ -190,33 +204,30 @@ const Profile = () => {
         <div className="col-md-4">
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center experience">
-              <span>Edit Experience</span>
-              <span className="border px-3 p-1 add-experience">
+              <span>Your favorites Advertisements</span>
+              <Link to="/advertisements" className="border px-3 p-1 ">
                 <i className="fa fa-plus" />
-                &nbsp;Experience
-              </span>
-            </div>
-            <br />
-            <div className="col-md-12">
-              <label className="labels">Experience in Designing</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="experience"
-                defaultValue
-              />
-            </div>{" "}
-            <br />
-            <div className="col-md-12">
-              <label className="labels">Additional Details</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="additional details"
-                defaultValue
-              />
+                &nbsp;Add more
+              </Link>
             </div>
           </div>
+          {favoriteAds.map((fav) => (
+            <div
+              className="fav_box d-flex align-items-center justify-content-between border-3 border p-2 my-3"
+              key={fav.id}
+            >
+              <img
+                src={
+                  fav.advertisement_image.length > 0
+                    ? `${backendURL}${fav.advertisement_image[0].image}`
+                    : null
+                }
+                alt="Ad image"
+                className="fav_img"
+              />
+              <Link to={`/advertisements/${fav.id}`}>{fav.title}</Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>
