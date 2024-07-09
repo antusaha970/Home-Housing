@@ -22,6 +22,7 @@ const Profile = () => {
   const [isAvailableProfile, setIsAvailableProfile] = useState(false);
   const [profileId, setProfileId] = useState(null);
   const [favoriteAds, setFavoriteAds] = useState([]);
+  const [errorInDb, setErrorInDb] = useState(null);
 
   useEffect(() => {
     const getProfileDetails = async () => {
@@ -34,6 +35,7 @@ const Profile = () => {
           setDistrict(response.data.district);
           setIsAvailableProfile(true);
           setProfileId(response.data.id);
+          setProfilePicture(`${backendURL}${response.data.profile_picture}`);
         }
       } catch (error) {
         console.error({ error });
@@ -56,13 +58,15 @@ const Profile = () => {
   console.log(favoriteAds);
 
   const onSubmit = async (data) => {
+    data.profile_picture = data.profile_picture[0];
     try {
+      setErrorInDb(null);
       setLoading(true);
       let response;
       if (!isAvailableProfile) {
         response = await client.post("/api/accounts/profile/", data, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "content-Type": "multipart/form-data",
           },
         });
       } else {
@@ -71,7 +75,7 @@ const Profile = () => {
           data,
           {
             headers: {
-              "Content-Type": "multipart/form-data",
+              "content-Type": "multipart/form-data",
             },
           }
         );
@@ -81,13 +85,17 @@ const Profile = () => {
         setPhoneNumber(response.data.phone_number);
         setGender(response.data.gender);
         setDistrict(response.data.district);
+        setProfilePicture(`${backendURL}${response.data.profile_picture}`);
       }
     } catch (error) {
       console.error({ error });
+      setErrorInDb(error.response.data);
     } finally {
       setLoading(false);
     }
   };
+
+  console.log(profilePicture);
 
   return (
     <div className="container rounded bg-white mt-5 mb-5">
@@ -199,6 +207,11 @@ const Profile = () => {
                 </p>
               )}
             </form>
+            {errorInDb && (
+              <p className="text-danger text-center">
+                {JSON.stringify(errorInDb)}
+              </p>
+            )}
           </div>
         </div>
         <div className="col-md-4">
