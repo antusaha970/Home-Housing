@@ -22,7 +22,7 @@ const Hero = () => {
             <Link to="/advertisements" className="btn btn-success ms-1">
               Book now <i className="fa-solid fa-arrow-right"></i>
             </Link>
-            <Link to="/advertisements" className="btn btn-dark ms-1">
+            <Link to="/post_advertisement" className="btn btn-dark ms-1">
               Host your property <i className="fa-solid fa-arrow-right"></i>
             </Link>
           </div>

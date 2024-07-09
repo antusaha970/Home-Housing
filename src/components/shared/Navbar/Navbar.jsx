@@ -20,9 +20,9 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <Link to="/" className="navbar-brand">
             <img src={logo} alt="logo" className="logo" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

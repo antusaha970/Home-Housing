@@ -25,7 +25,7 @@ const AboutOurService = () => {
           <Link to="/advertisements" className="btn btn-dark ms-1">
             Search for House <i className="fa-solid fa-arrow-right"></i>
           </Link>
-          <Link to="/advertisements" className="btn btn-success ms-1">
+          <Link to="/post_advertisement" className="btn btn-success ms-1">
             Give advertisement <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>

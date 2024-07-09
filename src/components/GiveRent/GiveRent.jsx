@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import give_rent from "../../assets/stock/give_rent.png";
 const GiveRent = () => {
   return (
@@ -17,7 +18,9 @@ const GiveRent = () => {
             aliquid, nulla quisquam illo architecto voluptatibus quae, quasi
             expedita cumque vitae eaque nesciunt molestiae quas sunt.
           </p>
-          <button className="btn btn-success">Give advertisement</button>
+          <Link to="/post_advertisement" className="btn btn-success">
+            Give advertisement <i className="fa-solid fa-arrow-right"></i>
+          </Link>
         </div>
       </div>
     </section>
