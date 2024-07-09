@@ -98,10 +98,14 @@ const Profile = () => {
               {userDetails?.account?.email}{" "}
             </span>
             <span className="font-weight-bold">
-              Phone number : {phoneNumber}
+              Phone number : {phoneNumber ? phoneNumber : "not updated"}
             </span>
-            <span className="font-weight-bold">Gender : {gender}</span>
-            <span className="font-weight-bold">District : {district}</span>
+            <span className="font-weight-bold">
+              Gender : {gender ? gender : "not updated"}
+            </span>
+            <span className="font-weight-bold">
+              District : {district ? district : "not updated"}
+            </span>
           </div>
         </div>
         <div className="col-md-5 border-right">

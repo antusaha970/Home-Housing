@@ -1,10 +1,20 @@
 import { useContext } from "react";
 import logo from "../../../assets/logo.png";
 import "./navbar.css";
-import { IsLoggedInContext } from "../../../context/Allcontext";
+import {
+  IsLoggedInContext,
+  UserDetailsContext,
+} from "../../../context/Allcontext";
 import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
-  const [loggedIn] = useContext(IsLoggedInContext);
+  const [loggedIn, setLoggedIn] = useContext(IsLoggedInContext);
+  const [userDetails, setUserDetails] = useContext(UserDetailsContext);
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUserDetails({});
+    localStorage.removeItem("user_token");
+  };
 
   return (
     <>
@@ -73,7 +83,9 @@ const Navbar = () => {
                   <Link to="/profile" className="btn btn-success me-2">
                     Profile
                   </Link>
-                  <button className="btn btn-dark me-2">Logout</button>
+                  <button onClick={handleLogout} className="btn btn-dark me-2">
+                    Logout
+                  </button>
                 </>
               )}
             </div>

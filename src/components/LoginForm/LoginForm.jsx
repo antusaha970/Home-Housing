@@ -34,7 +34,7 @@ const LoginForm = () => {
         localStorage.setItem("user_token", JSON.stringify(response.data.token));
         setLoggedIn(true);
         setUserDetails(response.data);
-        navigate("/");
+        navigate("/profile");
       }
     } catch (error) {
       setErrorInRegistration(error.response.data);
