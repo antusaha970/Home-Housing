@@ -128,6 +128,21 @@ const Profile = () => {
             <span className="font-weight-bold">
               District : {district ? district : "not updated"}
             </span>
+
+            {/* profile navigation */}
+            <p className="fw-bold mt-3 mb-0">Navigation</p>
+            <ul className="text-start">
+              <li>
+                <Link className="fw-bold">View my bookings</Link>
+              </li>
+              <li>
+                <Link className="fw-bold">View received booking request</Link>
+              </li>
+              <li>
+                <Link className="fw-bold">Publish advertisement</Link>
+              </li>
+            </ul>
+            {/* profile navigation */}
           </div>
         </div>
         <div className="col-md-5 border-right">
