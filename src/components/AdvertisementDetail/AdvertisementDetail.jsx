@@ -7,13 +7,21 @@ import "./AdvertisementDetail.css";
 
 import { IsLoggedInContext } from "../../context/Allcontext";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const AdvertisementDetail = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const { id } = useParams();
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [loggedIn, setLoggedIn] = useContext(IsLoggedInContext);
+  const [newReviewPosted, setNewReviewPosted] = useState(false);
   const navigate = useNavigate();
   let photos = [];
   useEffect(() => {
@@ -38,7 +46,7 @@ const AdvertisementDetail = () => {
     };
     getAdvertisementDetails();
     getAdvertisementReview();
-  }, [id]);
+  }, [id, newReviewPosted]);
   details?.advertisement_image?.forEach((img) => {
     const src = { src: img.image, width: 800, height: 600 };
     photos.push(src);
@@ -59,6 +67,34 @@ const AdvertisementDetail = () => {
           toast.success("Added to favorite", {
             position: "top-right",
           });
+        }
+      } catch (error) {
+        console.error({ error });
+        toast.error("Something went wrong", {
+          position: "top-right",
+        });
+      }
+    }
+  };
+
+  const handlePostReview = async (data) => {
+    if (!loggedIn) {
+      toast.error("Please login first", {
+        position: "top-right",
+      });
+      navigate("/login");
+    } else {
+      data.rating = parseInt(data.rating);
+      try {
+        const response = await client.post(
+          `/api/advertise/${id}/post_reviews/`,
+          data
+        );
+        if (response.status == 200) {
+          toast.success("Review posted", {
+            position: "top-right",
+          });
+          setNewReviewPosted((prevState) => !prevState);
         }
       } catch (error) {
         console.error({ error });
@@ -146,7 +182,7 @@ const AdvertisementDetail = () => {
           <h5 className="fw-bold base-color fs-3 mt-3 text-center">
             Post a review{" "}
           </h5>
-          <form action="">
+          <form onSubmit={handleSubmit(handlePostReview)}>
             <div className="mb-3">
               <label htmlFor="emailForContact" className="form-label">
                 Email address
@@ -156,28 +192,32 @@ const AdvertisementDetail = () => {
                 className="form-control inputFiledBg"
                 id="emailForContact"
                 placeholder="name@example.com"
+                {...register("email", { required: true })}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="subjectforcontact" className="form-label">
+              <label htmlFor="name" className="form-label">
                 Name
               </label>
               <input
                 type="text"
                 className="form-control inputFiledBg"
-                id="subjectforcontact"
+                id="name"
                 placeholder="write subject here"
+                {...register("name", { required: true })}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="subjectforcontact" className="form-label">
+              <label htmlFor="rating" className="form-label">
                 Rating
               </label>
               <select
                 className="form-select inputFiledBg"
                 aria-label="Default select example"
+                id="rating"
+                {...register("rating")}
               >
                 <option value="1">1 Star</option>
                 <option value="2">2 Star</option>
@@ -197,6 +237,7 @@ const AdvertisementDetail = () => {
                 className="form-control inputFiledBg"
                 id="subject for contact"
                 placeholder="write subject here"
+                {...register("body", { required: true })}
                 required
               />
             </div>
