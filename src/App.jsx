@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import Homepage from "./pages/Hompage/Homepage";
 import Navbar from "./components/shared/Navbar/Navbar";
 import { useState } from "react";
-import { IsLoggedInContext } from "./context/Allcontext";
+import { IsLoggedInContext, UserDetailsContext } from "./context/Allcontext";
 import Footer from "./components/shared/Footer/Footer";
 import AdvertisementPage from "./pages/AdvertisementPage/AdvertisementPage";
 import AdvertisementDetailsPage from "./pages/AdvertisementDetailsPage/AdvertisementDetailsPage";
@@ -17,29 +17,32 @@ import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
   return (
     <IsLoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
-      <Navbar />
-      <ToastContainer />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/advertisements" element={<AdvertisementPage />} />
-        <Route
-          path="/advertisements/:id"
-          element={<AdvertisementDetailsPage />}
-        />
-        <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute isSignedIn={loggedIn}>
-              <ProfilePage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-      <Footer />
+      <UserDetailsContext.Provider value={[userDetails, setUserDetails]}>
+        <Navbar />
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/advertisements" element={<AdvertisementPage />} />
+          <Route
+            path="/advertisements/:id"
+            element={<AdvertisementDetailsPage />}
+          />
+          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute isSignedIn={loggedIn}>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+        <Footer />
+      </UserDetailsContext.Provider>
     </IsLoggedInContext.Provider>
   );
 }

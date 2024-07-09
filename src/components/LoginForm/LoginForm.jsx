@@ -4,7 +4,10 @@ import LoginImage from "../../assets/stock/login.png";
 import client from "../../api_client/api_client";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { IsLoggedInContext } from "../../context/Allcontext";
+import {
+  IsLoggedInContext,
+  UserDetailsContext,
+} from "../../context/Allcontext";
 const LoginForm = () => {
   const {
     register,
@@ -12,6 +15,7 @@ const LoginForm = () => {
     handleSubmit,
   } = useForm();
   const [, setLoggedIn] = useContext(IsLoggedInContext);
+  const [, setUserDetails] = useContext(UserDetailsContext);
 
   const [errorInRegistration, setErrorInRegistration] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,6 +33,7 @@ const LoginForm = () => {
         });
         localStorage.setItem("user_token", JSON.stringify(response.data.token));
         setLoggedIn(true);
+        setUserDetails(response.data);
         navigate("/");
       }
     } catch (error) {
