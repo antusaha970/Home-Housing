@@ -63,7 +63,9 @@ const Navbar = () => {
               {!loggedIn ? (
                 <>
                   <button className="btn btn-success me-2">Login</button>
-                  <button className="btn btn-dark me-2">Register</button>
+                  <Link to="/registration" className="btn btn-dark me-2">
+                    Register
+                  </Link>
                 </>
               ) : (
                 <>
