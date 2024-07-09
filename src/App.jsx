@@ -11,6 +11,7 @@ import Footer from "./components/shared/Footer/Footer";
 import AdvertisementPage from "./pages/AdvertisementPage/AdvertisementPage";
 import AdvertisementDetailsPage from "./pages/AdvertisementDetailsPage/AdvertisementDetailsPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           element={<AdvertisementDetailsPage />}
         />
         <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer />
     </IsLoggedInContext.Provider>

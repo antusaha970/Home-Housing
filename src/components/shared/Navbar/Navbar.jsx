@@ -6,7 +6,6 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const [loggedIn] = useContext(IsLoggedInContext);
 
-  console.log(loggedIn);
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -62,7 +61,9 @@ const Navbar = () => {
             <div className="d-flex">
               {!loggedIn ? (
                 <>
-                  <button className="btn btn-success me-2">Login</button>
+                  <Link to="/login" className="btn btn-success me-2">
+                    Login
+                  </Link>
                   <Link to="/registration" className="btn btn-dark me-2">
                     Register
                   </Link>
