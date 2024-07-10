@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ReceivedBookings = () => {
   const [receivedBookings, setReceivedBookings] = useState([]);
+  const [updated, setUpdated] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getReceivedBookings = async () => {
       try {
@@ -14,8 +17,28 @@ const ReceivedBookings = () => {
       }
     };
     getReceivedBookings();
-  }, []);
+  }, [updated]);
   console.log(receivedBookings);
+
+  const handleConfirmBooking = async (id) => {
+    try {
+      setLoading(true);
+      const response = await client.patch(`/api/bookings/requested/${id}/`);
+      if (response.status == 200) {
+        toast.success("Confirmed booking for this property", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.error({ error });
+      toast.error("Something went wrong", {
+        position: "top-right",
+      });
+    } finally {
+      setUpdated((curState) => !curState);
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="container my-5">
@@ -55,7 +78,21 @@ const ReceivedBookings = () => {
                 <td>{booking.message} </td>
                 <td>
                   {!booking.is_accepted && (
-                    <button className="btn btn-success">confirm</button>
+                    <>
+                      {!loading && (
+                        <button
+                          className="btn btn-success"
+                          onClick={() => handleConfirmBooking(booking.id)}
+                        >
+                          confirm
+                        </button>
+                      )}
+                      {loading && (
+                        <button className="btn btn-success">
+                          please wait...
+                        </button>
+                      )}
+                    </>
                   )}
                   {booking.is_accepted && (
                     <button className="btn btn-success" disabled>
