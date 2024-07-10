@@ -68,10 +68,41 @@ const Navbar = () => {
                 </Link>
               </li>
               {loggedIn && (
-                <li className="nav-item">
-                  <Link className="nav-link text-18" to="/post_advertisement">
-                    Post advertisements
-                  </Link>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    More options
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/my_bookings" className="dropdown-item">
+                        My bookings
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/received_requests" className="dropdown-item">
+                        Received bookings
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <Link to="/post_advertisement" className="dropdown-item">
+                        Post advertisement
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/post_advertisement" className="dropdown-item">
+                        View posted advertisements
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
               )}
             </ul>
