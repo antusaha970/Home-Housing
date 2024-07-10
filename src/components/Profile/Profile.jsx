@@ -55,8 +55,6 @@ const Profile = () => {
     getFavoritesAdd();
   }, [profileId]);
 
-  console.log(favoriteAds);
-
   const onSubmit = async (data) => {
     data.profile_picture = data.profile_picture[0];
     try {
@@ -136,7 +134,9 @@ const Profile = () => {
                 </Link>
               </li>
               <li>
-                <Link className="fw-bold">View received booking request</Link>
+                <Link to="/received_requests" className="fw-bold">
+                  View received booking request
+                </Link>
               </li>
               <li>
                 <Link to="/post_advertisement" className="fw-bold">
