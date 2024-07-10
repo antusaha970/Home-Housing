@@ -23,6 +23,7 @@ const Profile = () => {
   const [profileId, setProfileId] = useState(null);
   const [favoriteAds, setFavoriteAds] = useState([]);
   const [errorInDb, setErrorInDb] = useState(null);
+  const [userRole, setUserRole] = useState("user");
 
   useEffect(() => {
     const getProfileDetails = async () => {
@@ -36,6 +37,7 @@ const Profile = () => {
           setIsAvailableProfile(true);
           setProfileId(response.data.id);
           setProfilePicture(`${backendURL}${response.data.profile_picture}`);
+          setUserRole(response.data.user_role);
         }
       } catch (error) {
         console.error({ error });
@@ -43,6 +45,7 @@ const Profile = () => {
         setLoading(false);
       }
     };
+
     const getFavoritesAdd = async () => {
       try {
         const response = await client.get("/api/accounts/favorite_ads/");
@@ -143,11 +146,28 @@ const Profile = () => {
                   Publish advertisement
                 </Link>
               </li>
+              <li>
+                <Link to="/view_posted_advertisement" className="fw-bold">
+                  View published advertisement
+                </Link>
+              </li>
+              {userRole == "admin" && (
+                <li>
+                  <Link to="/admin/view_request" className="fw-bold">
+                    View rent request submitted by all users (Admin only)
+                  </Link>
+                </li>
+              )}
             </ul>
             {/* profile navigation */}
           </div>
         </div>
         <div className="col-md-5 border-right">
+          {userRole == "admin" && (
+            <Link to="/admin/view_request" className="fw-bold text-center">
+              * View submitted request by all users (Admin only)
+            </Link>
+          )}
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h4 className="text-right">Profile Settings</h4>

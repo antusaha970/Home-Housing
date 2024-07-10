@@ -18,6 +18,7 @@ import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
 import PostAdvertisementPage from "./pages/PostAdvertisementPage/PostAdvertisementPage";
 import ReceivedBookingPage from "./pages/ReceivedBookingPage/ReceivedBookingPage";
 import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/ViewPostedAdvertisementPage";
+import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminViewRentRequestPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -73,6 +74,14 @@ function App() {
             element={
               <PrivateRoute isSignedIn={loggedIn}>
                 <ViewPostedAdvertisementPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/view_request"
+            element={
+              <PrivateRoute isSignedIn={loggedIn}>
+                <AdminViewRentRequestPage />
               </PrivateRoute>
             }
           />
