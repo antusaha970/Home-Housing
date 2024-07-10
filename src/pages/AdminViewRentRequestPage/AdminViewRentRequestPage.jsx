@@ -1,7 +1,11 @@
-import React from "react";
+import AdminRentRequest from "../../components/AdminRentRequest/AdminRentRequest";
 
 const AdminViewRentRequestPage = () => {
-  return <div>AdminViewRentRequestPage</div>;
+  return (
+    <>
+      <AdminRentRequest />
+    </>
+  );
 };
 
 export default AdminViewRentRequestPage;
