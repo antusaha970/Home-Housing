@@ -98,7 +98,10 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/post_advertisement" className="dropdown-item">
+                      <Link
+                        to="/view_posted_advertisement"
+                        className="dropdown-item"
+                      >
                         View posted advertisements
                       </Link>
                     </li>

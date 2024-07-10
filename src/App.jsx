@@ -17,6 +17,7 @@ import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
 import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
 import PostAdvertisementPage from "./pages/PostAdvertisementPage/PostAdvertisementPage";
 import ReceivedBookingPage from "./pages/ReceivedBookingPage/ReceivedBookingPage";
+import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/ViewPostedAdvertisementPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -64,6 +65,14 @@ function App() {
             element={
               <PrivateRoute isSignedIn={loggedIn}>
                 <ReceivedBookingPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/view_posted_advertisement"
+            element={
+              <PrivateRoute isSignedIn={loggedIn}>
+                <ViewPostedAdvertisementPage />
               </PrivateRoute>
             }
           />
