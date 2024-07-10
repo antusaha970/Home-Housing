@@ -3,9 +3,11 @@ import post_ad_img from "../../assets/stock/post_advertisement.png";
 import { useState } from "react";
 import client from "../../api_client/api_client";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const PostAdvertisementForm = () => {
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     const formData = new FormData();
     const images = data.images;
@@ -21,7 +23,7 @@ const PostAdvertisementForm = () => {
       const response = await client.post("/api/advertise/", data);
       if (response.status == 201) {
         const response2 = await client.post(
-          `/api/advertise/19/upload_image/`,
+          `/api/advertise/${response.data.id}/upload_image/`,
           formData,
           {
             headers: {
@@ -32,7 +34,7 @@ const PostAdvertisementForm = () => {
         toast.success("Successfully posted your advertisement", {
           position: "top-right",
         });
-        console.log(response2);
+        navigate("/view_posted_advertisement");
       }
     } catch (error) {
       console.error({ error });
