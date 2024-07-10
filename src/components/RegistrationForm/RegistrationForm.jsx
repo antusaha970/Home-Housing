@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import registrationImage from "../../assets/stock/registration.png";
 import client from "../../api_client/api_client";
@@ -13,6 +13,7 @@ const RegistrationForm = () => {
 
   const [errorInRegistration, setErrorInRegistration] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -23,6 +24,10 @@ const RegistrationForm = () => {
         toast.success("Account activation link has been sent to your email", {
           position: "top-right",
         });
+        toast.info("Please active your account from your mail first", {
+          position: "top-right",
+        });
+        navigate("/login");
       }
     } catch (error) {
       setErrorInRegistration(error.response.data);

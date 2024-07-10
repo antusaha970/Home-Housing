@@ -15,7 +15,6 @@ const ViewPostedAdvertisement = () => {
     };
     getAllPostedAdvertisement();
   }, []);
-  console.log(advertisements);
 
   return (
     <section className="container">
@@ -55,12 +54,14 @@ const ViewPostedAdvertisement = () => {
                     </span>
                   </li>
                 </p>
-                <Link
-                  to={`/advertisements/${ad.id}`}
-                  className="card-link fw-bold"
-                >
-                  View ad details
-                </Link>
+                {ad.is_admin_approved && (
+                  <Link
+                    to={`/advertisements/${ad.id}`}
+                    className="card-link fw-bold"
+                  >
+                    View ad details
+                  </Link>
+                )}
               </div>
             </div>
           </div>
