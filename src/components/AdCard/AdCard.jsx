@@ -25,7 +25,11 @@ const AdCard = ({ ad }) => {
     <div className="col-12 col-sm-6 col-md-4">
       <div className="card card-margin shadow-sm">
         <div className="card-header no-border">
-          <img src={cover_image} className="card-img-top" alt="cover image" />
+          <img
+            src={cover_image}
+            className="card-img-custom"
+            alt="cover image"
+          />
         </div>
         <div className="card-body pt-0">
           <div className="widget-49">
