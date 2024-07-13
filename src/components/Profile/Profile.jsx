@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import client from "../../api_client/api_client";
 import { Link } from "react-router-dom";
 import backendURL from "../../api_client/backend_domain";
+import FavouriteAds from "../FavoriteAds/FavouriteAds";
 const Profile = () => {
   const [userDetails] = useContext(UserDetailsContext);
   const {
@@ -100,66 +101,71 @@ const Profile = () => {
     <div className="container rounded bg-white mt-5 mb-5">
       <div className="row">
         <div className="col-md-3 border-right">
-          <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-            <img
-              className="rounded-circle mt-5"
-              width="150px"
-              src={profilePicture}
-            />
-            <span className="font-weight-bold py-2">
-              Username :{" "}
-              <span className="fw-bold">{userDetails?.account?.username}</span>
-            </span>
-            <span className="font-weight-bold">
-              {userDetails?.account?.first_name}{" "}
-              {userDetails?.account?.last_name}
-            </span>
-            <span className="text-black-50">
-              {" "}
-              {userDetails?.account?.email}{" "}
-            </span>
-            <span className="font-weight-bold">
-              Phone number : {phoneNumber ? phoneNumber : "not updated"}
-            </span>
-            <span className="font-weight-bold">
-              Gender : {gender ? gender : "not updated"}
-            </span>
-            <span className="font-weight-bold">
-              District : {district ? district : "not updated"}
-            </span>
+          <div className="border border-1">
+            <div className="d-flex flex-column  p-3 py-5">
+              <h5 className="fw-bold">Your profile information</h5>
+              <img
+                className="rounded-circle mt-5"
+                width="150px"
+                src={profilePicture}
+              />
+              <span className="font-weight-bold py-2">
+                Username :{" "}
+                <span className="fw-bold">
+                  {userDetails?.account?.username}
+                </span>
+              </span>
+              <span className="font-weight-bold">
+                {userDetails?.account?.first_name}{" "}
+                {userDetails?.account?.last_name}
+              </span>
+              <span className="text-black-50">
+                {" "}
+                {userDetails?.account?.email}{" "}
+              </span>
+              <span className="font-weight-bold">
+                Phone number : {phoneNumber ? phoneNumber : "not updated"}
+              </span>
+              <span className="font-weight-bold">
+                Gender : {gender ? gender : "not updated"}
+              </span>
+              <span className="font-weight-bold">
+                District : {district ? district : "not updated"}
+              </span>
 
-            {/* profile navigation */}
-            <p className="fw-bold mt-3 mb-0">Navigation</p>
-            <ul className="text-start">
-              <li>
-                <Link to="/my_bookings" className="fw-bold">
-                  View my bookings
-                </Link>
-              </li>
-              <li>
-                <Link to="/received_requests" className="fw-bold">
-                  View received booking request
-                </Link>
-              </li>
-              <li>
-                <Link to="/post_advertisement" className="fw-bold">
-                  Publish advertisement
-                </Link>
-              </li>
-              <li>
-                <Link to="/view_posted_advertisement" className="fw-bold">
-                  View published advertisement
-                </Link>
-              </li>
-              {userRole == "admin" && (
+              {/* profile navigation */}
+              <p className="fw-bold mt-3 mb-0">Navigation</p>
+              <ul className="text-start">
                 <li>
-                  <Link to="/admin/view_request" className="fw-bold">
-                    View rent request submitted by all users (Admin only)
+                  <Link to="/my_bookings" className="fw-bold">
+                    View my bookings
                   </Link>
                 </li>
-              )}
-            </ul>
-            {/* profile navigation */}
+                <li>
+                  <Link to="/received_requests" className="fw-bold">
+                    View received booking request
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/post_advertisement" className="fw-bold">
+                    Publish advertisement
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/view_posted_advertisement" className="fw-bold">
+                    View published advertisement
+                  </Link>
+                </li>
+                {userRole == "admin" && (
+                  <li>
+                    <Link to="/admin/view_request" className="fw-bold">
+                      View rent request submitted by all users (Admin only)
+                    </Link>
+                  </li>
+                )}
+              </ul>
+              {/* profile navigation */}
+            </div>
           </div>
         </div>
         <div className="col-md-5 border-right">
@@ -170,7 +176,7 @@ const Profile = () => {
           )}
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-right">Profile Settings</h4>
+              <h4 className="text-right">Update profile information</h4>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-3">
@@ -261,23 +267,7 @@ const Profile = () => {
               </Link>
             </div>
           </div>
-          {favoriteAds.map((fav) => (
-            <div
-              className="fav_box d-flex align-items-center justify-content-between border-3 border p-2 my-3"
-              key={fav.id}
-            >
-              <img
-                src={
-                  fav.advertisement_image.length > 0
-                    ? `${backendURL}${fav.advertisement_image[0].image}`
-                    : null
-                }
-                alt="Ad image"
-                className="fav_img"
-              />
-              <Link to={`/advertisements/${fav.id}`}>{fav.title}</Link>
-            </div>
-          ))}
+          <FavouriteAds favoriteAds={favoriteAds} />
         </div>
       </div>
     </div>
