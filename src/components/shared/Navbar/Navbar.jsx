@@ -8,7 +8,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useContext(IsLoggedInContext);
-  const [userDetails, setUserDetails] = useContext(UserDetailsContext);
+  const [, setUserDetails] = useContext(UserDetailsContext);
 
   const handleLogout = () => {
     setLoggedIn(false);

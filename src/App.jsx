@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Homepage from "./pages/Hompage/Homepage";
 import Navbar from "./components/shared/Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IsLoggedInContext, UserDetailsContext } from "./context/Allcontext";
 import Footer from "./components/shared/Footer/Footer";
 import AdvertisementPage from "./pages/AdvertisementPage/AdvertisementPage";
@@ -19,10 +19,26 @@ import PostAdvertisementPage from "./pages/PostAdvertisementPage/PostAdvertiseme
 import ReceivedBookingPage from "./pages/ReceivedBookingPage/ReceivedBookingPage";
 import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/ViewPostedAdvertisementPage";
 import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminViewRentRequestPage";
+import client from "./api_client/api_client";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    const getLoggedInUserInformation = async () => {
+      try {
+        const response = await client.get("/api/accounts/login/");
+        setUserDetails(response.data);
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    const is_token_available = localStorage.getItem("user_token");
+    if (is_token_available) {
+      setLoggedIn(true);
+      getLoggedInUserInformation();
+    }
+  }, []);
   return (
     <IsLoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
       <UserDetailsContext.Provider value={[userDetails, setUserDetails]}>

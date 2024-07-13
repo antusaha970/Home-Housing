@@ -9,11 +9,7 @@ import {
   UserDetailsContext,
 } from "../../context/Allcontext";
 const LoginForm = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const [, setLoggedIn] = useContext(IsLoggedInContext);
   const [, setUserDetails] = useContext(UserDetailsContext);
 
