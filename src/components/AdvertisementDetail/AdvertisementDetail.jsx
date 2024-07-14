@@ -17,7 +17,7 @@ const AdvertisementDetail = () => {
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const [loggedIn, setLoggedIn] = useContext(IsLoggedInContext);
+  const [loggedIn] = useContext(IsLoggedInContext);
   const [newReviewPosted, setNewReviewPosted] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -250,19 +250,32 @@ const ModelForBooking = ({ modalIsOpen, setIsOpen, id }) => {
   const onSubmit = async (data) => {
     data = { ...data, property_ad: parseInt(id) };
     setIsOpen(false);
-    try {
-      const response = await client.post(`/api/bookings/`, data);
-      console.log(response.data);
-      if (response.status == 200) {
-        toast.success("Booking request sent", {
+    const payment_method = data.payment_method;
+    if (payment_method == "cash") {
+      try {
+        const response = await client.post(`/api/bookings/`, data);
+        console.log(response.data);
+        if (response.status == 200) {
+          toast.success("Booking request sent", {
+            position: "top-right",
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("This property is already booked", {
           position: "top-right",
         });
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("This property is already booked", {
-        position: "top-right",
-      });
+    } else {
+      try {
+        const response = await client.post("/api/bookings/card/", data);
+        const url = response.data.session_url;
+        toast.info("Please pay with your credit card to confirm your booking");
+        window.open(url, "_blank");
+      } catch (error) {
+        console.error({ error });
+        toast.error("Something went wrong!!");
+      }
     }
   };
   return (
@@ -287,6 +300,22 @@ const ModelForBooking = ({ modalIsOpen, setIsOpen, id }) => {
             rows={5}
             required
           ></textarea>
+          <div className="my-2">
+            <label htmlFor="payment_option" className="fw-bold">
+              Select your payment option
+            </label>
+            <select
+              className="form-select"
+              id="payment_option"
+              aria-label="Default select example"
+              {...register("payment_method")}
+            >
+              <option value="cash" selected>
+                Cash
+              </option>
+              <option value="card">Card</option>
+            </select>
+          </div>
           <button className="btn btn-dark mt-5" type="submit">
             Send request
           </button>
