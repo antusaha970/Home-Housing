@@ -20,6 +20,7 @@ import ReceivedBookingPage from "./pages/ReceivedBookingPage/ReceivedBookingPage
 import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/ViewPostedAdvertisementPage";
 import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminViewRentRequestPage";
 import client from "./api_client/api_client";
+import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -47,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/advertisements" element={<AdvertisementPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
           <Route
             path="/advertisements/:id"
             element={<AdvertisementDetailsPage />}

@@ -1,17 +1,26 @@
 import "./contactus.css";
 import contact_us from "../../assets/stock/contactus.png";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 const ContactUs = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    toast.success("Thanks for contacting us. We will get back to you soon!");
+    reset();
+  };
+
   return (
     <section className="container my-5" id="contact">
       <h3 className="text-center fw-bold">Contact Us</h3>
       <div className="row align-items-center">
         <div className="col-12 col-sm-12 col-md-6">
-          <form action="">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label htmlFor="emailForContact" className="form-label">
                 Email address
               </label>
               <input
+                {...register("email")}
                 type="email"
                 className="form-control inputFiledBg"
                 id="emailForContact"
@@ -24,6 +33,7 @@ const ContactUs = () => {
                 Subject
               </label>
               <input
+                {...register("subject")}
                 type="text"
                 className="form-control inputFiledBg"
                 id="subjectforcontact"
@@ -36,6 +46,7 @@ const ContactUs = () => {
                 Message
               </label>
               <textarea
+                {...register("message")}
                 rows={5}
                 className="form-control inputFiledBg"
                 id="subject for contact"

@@ -1,7 +1,7 @@
 import axios from "axios";
 const client = axios.create({
-  baseURL: "https://home-housing-backend.onrender.com",
-  // baseURL: "http://127.0.0.1:8000",
+  // baseURL: "https://home-housing-backend.onrender.com",
+  baseURL: "http://127.0.0.1:8000",
 });
 
 client.interceptors.request.use(
