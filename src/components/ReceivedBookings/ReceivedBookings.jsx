@@ -18,7 +18,6 @@ const ReceivedBookings = () => {
     };
     getReceivedBookings();
   }, [updated]);
-  console.log(receivedBookings);
 
   const handleConfirmBooking = async (id) => {
     try {
@@ -55,6 +54,8 @@ const ReceivedBookings = () => {
               <th scope="col">Rent fees</th>
               <th scope="col">Booked on</th>
               <th scope="col">Booked by</th>
+              <th scope="col">Payment method</th>
+              <th scope="col">Is paid</th>
               <th scope="col">Message</th>
               <th scope="col">Accept booking</th>
             </tr>
@@ -75,6 +76,8 @@ const ReceivedBookings = () => {
                 <td>
                   {booking.booked_by.first_name} {booking.booked_by.last_name}
                 </td>
+                <td>{booking?.payment_method}</td>
+                <td>{booking?.is_paid ? "Yes" : "No"}</td>
                 <td>{booking.message} </td>
                 <td>
                   {!booking.is_accepted && (

@@ -158,10 +158,13 @@ const AdvertisementDetail = () => {
           <h5 className="fw-bold base-color fs-3 my-5">
             Have you liked this property?
           </h5>
-          <button className="btn btn-success ms-2" onClick={handleBooking}>
+          <button className="btn btn-success ms-2 mb-2" onClick={handleBooking}>
             Book now <i className="fa-solid fa-square-check"></i>
           </button>
-          <button className="btn btn-dark ms-2" onClick={handleAddToFavorite}>
+          <button
+            className="btn btn-dark ms-2 mb-2"
+            onClick={handleAddToFavorite}
+          >
             Add to favorite <i className="fa-regular fa-heart"></i>
           </button>
         </div>

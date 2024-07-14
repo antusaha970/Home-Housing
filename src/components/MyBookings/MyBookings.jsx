@@ -30,6 +30,8 @@ const MyBookings = () => {
               <th scope="col">Booked on</th>
               <th scope="col">Advertisement</th>
               <th scope="col">Status</th>
+              <th scope="col">Payment method</th>
+              <th scope="col">Is paid</th>
               <th scope="col">Is confirmed</th>
               <th scope="col">View details</th>
             </tr>
@@ -42,7 +44,9 @@ const MyBookings = () => {
                 </th>
                 <td>{booking?.property_ad?.title}</td>
                 <td>{booking?.is_accepted ? "booked" : "pending"}</td>
-                <td>{booking?.is_accepted ? "yes" : "no"}</td>
+                <td>{booking?.payment_method}</td>
+                <td>{booking?.is_paid ? "Yes" : "No"}</td>
+                <td>{booking?.is_accepted ? "Yes" : "No"}</td>
                 <td>
                   <Link
                     to={`/advertisements/${booking?.property_ad?.id}`}
