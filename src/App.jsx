@@ -21,6 +21,7 @@ import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/Vie
 import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminViewRentRequestPage";
 import client from "./api_client/api_client";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/advertisements" element={<AdvertisementPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
           <Route
             path="/advertisements/:id"
             element={<AdvertisementDetailsPage />}
