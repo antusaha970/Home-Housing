@@ -1,4 +1,5 @@
 import { useState } from "react";
+import faq from "../../assets/stock/faq.png";
 import "./faq.css";
 
 const FaqSection = () => {
@@ -15,8 +16,16 @@ const FaqSection = () => {
 
   return (
     <section className="container my-4">
-      <div className="row">
-        <div className="col-12 col-md-6 col-sm-12">image here</div>
+      <h3 className="fw-bold text-center">Frequently Asked questions</h3>
+      <div className="row align-items-center">
+        <div className="col-12 col-md-6 col-sm-12">
+          <img
+            data-aos="fade-right"
+            src={faq}
+            alt="faq"
+            className="img-fluid"
+          />
+        </div>
         <div className="col-12 col-md-6 col-sm-12">
           {/* faq sections */}
           <div className="container">
