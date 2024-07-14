@@ -270,7 +270,7 @@ const ModelForBooking = ({ modalIsOpen, setIsOpen, id }) => {
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
+      contentLabel="booking Modal"
     >
       <div className="p-5 modal-bg">
         <div className="text-end">

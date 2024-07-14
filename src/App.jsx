@@ -22,10 +22,15 @@ import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminView
 import client from "./api_client/api_client";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
+import PopUpAd from "./components/shared/PopUpAd/PopUpAd";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   useEffect(() => {
     const getLoggedInUserInformation = async () => {
       try {
@@ -41,11 +46,20 @@ function App() {
       getLoggedInUserInformation();
     }
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setModalIsOpen(true);
+    }, 15000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <IsLoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
       <UserDetailsContext.Provider value={[userDetails, setUserDetails]}>
         <Navbar />
         <ToastContainer />
+        <PopUpAd modalIsOpen={modalIsOpen} closeModal={closeModal} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/advertisements" element={<AdvertisementPage />} />
