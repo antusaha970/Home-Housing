@@ -54,6 +54,7 @@ const Advertisements = () => {
                 setPage(1);
                 setCategory("");
               }}
+              className={`${category == "" ? "selectedCategory" : ""}`}
             >
               All categories
             </li>
@@ -62,30 +63,34 @@ const Advertisements = () => {
                 setPage(1);
                 setCategory("home");
               }}
+              className={`${category == "home" ? "selectedCategory" : ""}`}
             >
-              home
+              home <i className="fa-solid fa-house"></i>
             </li>
             <li
               onClick={() => {
                 setPage(1);
                 setCategory("family");
               }}
+              className={`${category == "family" ? "selectedCategory" : ""}`}
             >
-              family
+              family <i className="fa-solid fa-people-roof"></i>
             </li>
             <li
               onClick={() => {
                 setPage(1);
                 setCategory("office");
               }}
+              className={`${category == "office" ? "selectedCategory" : ""}`}
             >
-              office
+              office <i className="fa-solid fa-house-laptop"></i>
             </li>
             <li
               onClick={() => {
                 setPage(1);
                 setCategory("bachelor");
               }}
+              className={`${category == "bachelor" ? "selectedCategory" : ""}`}
             >
               bachelor
             </li>
@@ -94,14 +99,16 @@ const Advertisements = () => {
                 setPage(1);
                 setCategory("shop");
               }}
+              className={`${category == "shop" ? "selectedCategory" : ""}`}
             >
-              shop
+              shop <i className="fa-solid fa-shop"></i>
             </li>
             <li
               onClick={() => {
                 setPage(1);
                 setCategory("sublet");
               }}
+              className={`${category == "sublet" ? "selectedCategory" : ""}`}
             >
               sublet
             </li>
@@ -110,8 +117,9 @@ const Advertisements = () => {
                 setPage(1);
                 setCategory("hostel");
               }}
+              className={`${category == "hostel" ? "selectedCategory" : ""}`}
             >
-              hostel
+              hostel <i className="fa-solid fa-hotel"></i>
             </li>
           </ul>
         </div>

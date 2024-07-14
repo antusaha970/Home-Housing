@@ -11,3 +11,9 @@
   color: #157347;
   text-decoration: underline;
 }
+
+.selectedCategory {
+  color: #157347;
+  text-decoration: underline;
+  font-weight: bold;
+}
