@@ -1,37 +1,42 @@
-
 # House Rent Site - Frontend
 
 The House Rent Site frontend is a web application that allows users to interact with the house rental advertisement platform. The frontend is built using React with Bootstrap for styling. It includes forms managed by react-hook-form and routing implemented with React Router. The application supports login persistence and private routing for secure access to certain pages.
 
-
 ## Features
+
 ### User Authentication
+
 - User registration, login, and logout.
 - Login persistence to keep users logged in across sessions.
 - Private routing to secure routes that require authentication.
 
 ### Rent Advertise
+
 - Users can create and manage house rent advertisements.
 - Advertisements are displayed in a user-friendly layout.
 
 ### Rent Requests
+
 - Users can send rent requests directly to advertisers.
 - Advertisers can accept or reject rent requests.
 - While sending rent request users can pay with Credit card
 
 ### Filtering
+
 - Users can filter rent advertisements based on categories.
 - Users can filter rent advertisements based on Price,rating,division,district.
 
 ### Saving Favorites
+
 - Users can save their favorite advertisements for quick access.
 
 ### Reviews and Ratings
+
 - Users can rate and review advertisements to provide feedback.
 
 ### Deployment
-- The application is deployed on a secure and scalable hosting platform.
 
+- The application is deployed on a secure and scalable hosting platform.
 
 ## Tech Stack
 
@@ -43,4 +48,22 @@ The House Rent Site frontend is a web application that allows users to interact 
 
 **React Router:** Library for handling routing in React applications.
 
+## Docker Setup
 
+Ensure that you have Docker and Docker Compose installed on your machine.
+
+## Building the Docker Image
+
+```bash
+  docker compose build
+```
+
+This command will build the Docker image based on the Dockerfile and configurations in docker-compose.yml.
+
+## Running the Application
+
+```bash
+  docker compose up
+```
+
+This command will build (if not already built) and start the containers as defined in the docker-compose.yml file. The application should be accessible at http://localhost:10590.
