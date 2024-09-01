@@ -19,12 +19,7 @@ const FaqSection = () => {
       <h3 className="fw-bold text-center">Frequently Asked questions</h3>
       <div className="row align-items-center">
         <div className="col-12 col-md-6 col-sm-12">
-          <img
-            data-aos="fade-right"
-            src={faq}
-            alt="faq"
-            className="img-fluid"
-          />
+          <img src={faq} alt="faq" className="img-fluid" />
         </div>
         <div className="col-12 col-md-6 col-sm-12">
           {/* faq sections */}

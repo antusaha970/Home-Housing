@@ -58,12 +58,7 @@ const ContactUs = () => {
           </form>
         </div>
         <div className="col-12 col-sm-12 col-md-6">
-          <img
-            data-aos="fade-left"
-            src={contact_us}
-            alt="contact us"
-            className="img-fluid"
-          />
+          <img src={contact_us} alt="contact us" className="img-fluid" />
         </div>
       </div>
     </section>

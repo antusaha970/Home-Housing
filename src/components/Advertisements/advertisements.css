@@ -17,3 +17,7 @@
   text-decoration: underline;
   font-weight: bold;
 }
+
+.categoriesList {
+  list-style: none;
+}
