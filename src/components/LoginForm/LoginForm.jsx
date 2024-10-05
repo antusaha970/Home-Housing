@@ -27,7 +27,10 @@ const LoginForm = () => {
         toast.success("Logged in successful", {
           position: "top-right",
         });
-        localStorage.setItem("user_token", JSON.stringify(response.data.token));
+        sessionStorage.setItem(
+          "user_token",
+          JSON.stringify(response.data.token)
+        );
         setLoggedIn(true);
         setUserDetails(response.data);
         navigate("/profile");

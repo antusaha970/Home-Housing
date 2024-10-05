@@ -40,7 +40,7 @@ function App() {
         console.log({ error });
       }
     };
-    const is_token_available = localStorage.getItem("user_token");
+    const is_token_available = sessionStorage.getItem("user_token");
     if (is_token_available) {
       setLoggedIn(true);
       getLoggedInUserInformation();

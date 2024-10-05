@@ -6,7 +6,7 @@ const client = axios.create({
 
 client.interceptors.request.use(
   (config) => {
-    let token = localStorage.getItem("user_token");
+    let token = sessionStorage.getItem("user_token");
     if (token) {
       token = JSON.parse(token);
       config.headers.Authorization = `Token ${token}`;

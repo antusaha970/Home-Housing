@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleLogout = () => {
     setLoggedIn(false);
     setUserDetails({});
-    localStorage.removeItem("user_token");
+    sessionStorage.removeItem("user_token");
   };
 
   return (
