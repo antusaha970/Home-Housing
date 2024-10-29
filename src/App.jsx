@@ -31,21 +31,6 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-  useEffect(() => {
-    const getLoggedInUserInformation = async () => {
-      try {
-        const response = await client.get("/api/accounts/login/");
-        setUserDetails(response.data);
-      } catch (error) {
-        console.log({ error });
-      }
-    };
-    const is_token_available = sessionStorage.getItem("user_token");
-    if (is_token_available) {
-      setLoggedIn(true);
-      getLoggedInUserInformation();
-    }
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

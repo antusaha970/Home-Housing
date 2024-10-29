@@ -4,15 +4,10 @@ import { UserDetailsContext } from "../../context/Allcontext";
 import { useForm } from "react-hook-form";
 import client from "../../api_client/api_client";
 import { Link } from "react-router-dom";
-import backendURL from "../../api_client/backend_domain";
 import FavouriteAds from "../FavoriteAds/FavouriteAds";
 const Profile = () => {
   const [userDetails] = useContext(UserDetailsContext);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [gender, setGender] = useState(null);

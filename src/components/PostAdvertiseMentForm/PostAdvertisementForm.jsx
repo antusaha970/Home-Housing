@@ -9,12 +9,11 @@ const PostAdvertisementForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    const images = data.images;
-    Array.from(images).forEach((image) => {
-      formData.append("images", image);
-    });
-    delete data.images;
+    const img1 = data.image1;
+    const img2 = data.image2;
+    const image_links = [img1, img2];
+    delete data["image1"];
+    delete data["image2"];
     toast.warning("Please wait some moment", {
       position: "top-right",
     });
@@ -22,14 +21,10 @@ const PostAdvertisementForm = () => {
       setLoading(true);
       const response = await client.post("/api/advertise/", data);
       if (response.status == 201) {
+        toast.success("Advertisement added now adding images");
         const response2 = await client.post(
           `/api/advertise/${response.data.id}/upload_image/`,
-          formData,
-          {
-            headers: {
-              "content-Type": "multipart/form-data",
-            },
-          }
+          { images: image_links }
         );
         toast.success("Successfully posted your advertisement", {
           position: "top-right",
@@ -157,16 +152,30 @@ const PostAdvertisementForm = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="images" className="form-label">
-                Images of your property
+              <label htmlFor="image1" className="form-label">
+                Image URL of your image
               </label>
               <input
-                type="file"
+                type="text"
                 multiple={true}
                 className="form-control inputFiledBg"
-                id="images"
+                id="image1"
                 placeholder="Upload profile picture"
-                {...register("images")}
+                {...register("image1")}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="image2" className="form-label">
+                Image URL of your image
+              </label>
+              <input
+                type="text"
+                multiple={true}
+                className="form-control inputFiledBg"
+                id="image2"
+                placeholder="Upload profile picture"
+                {...register("image2")}
                 required
               />
             </div>
