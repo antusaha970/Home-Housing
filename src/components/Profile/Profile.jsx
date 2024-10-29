@@ -37,7 +37,7 @@ const Profile = () => {
           setDistrict(response.data.district);
           setIsAvailableProfile(true);
           setProfileId(response.data.id);
-          setProfilePicture(`${backendURL}${response.data.profile_picture}`);
+          setProfilePicture(response.data.profile_picture);
           setUserRole(response.data.user_role);
         }
       } catch (error) {
@@ -60,26 +60,16 @@ const Profile = () => {
   }, [profileId]);
 
   const onSubmit = async (data) => {
-    data.profile_picture = data.profile_picture[0];
     try {
       setErrorInDb(null);
       setLoading(true);
       let response;
       if (!isAvailableProfile) {
-        response = await client.post("/api/accounts/profile/", data, {
-          headers: {
-            "content-Type": "multipart/form-data",
-          },
-        });
+        response = await client.post("/api/accounts/profile/", data);
       } else {
         response = await client.patch(
           `/api/accounts/profile/${profileId}/`,
-          data,
-          {
-            headers: {
-              "content-Type": "multipart/form-data",
-            },
-          }
+          data
         );
       }
 
@@ -87,7 +77,7 @@ const Profile = () => {
         setPhoneNumber(response.data.phone_number);
         setGender(response.data.gender);
         setDistrict(response.data.district);
-        setProfilePicture(`${backendURL}${response.data.profile_picture}`);
+        setProfilePicture(response.data.profile_picture);
       }
     } catch (error) {
       console.error({ error });
@@ -228,10 +218,10 @@ const Profile = () => {
                   Profile picture
                 </label>
                 <input
-                  type="file"
+                  type="text"
                   className="form-control inputFiledBg"
                   id="profile_pic"
-                  placeholder="Upload profile picture"
+                  placeholder="Enter profile picture URL"
                   {...register("profile_picture", { required: true })}
                   required
                 />
