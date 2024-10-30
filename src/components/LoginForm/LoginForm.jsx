@@ -99,6 +99,12 @@ const LoginForm = () => {
               {JSON.stringify(errorInRegistration)}
             </p>
           )}
+          <div className="mt-3">
+            <p className="mb-0">Dummy username: antu</p>
+            <p>Dummy password: Pa$$w0rd!</p>
+            <p className="mb-0">Admin username: admin1</p>
+            <p>Dummy password: admin1</p>
+          </div>
         </div>
       </div>
     </section>
