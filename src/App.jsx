@@ -19,7 +19,6 @@ import PostAdvertisementPage from "./pages/PostAdvertisementPage/PostAdvertiseme
 import ReceivedBookingPage from "./pages/ReceivedBookingPage/ReceivedBookingPage";
 import ViewPostedAdvertisementPage from "./pages/ViewPostedAdvertisementPage/ViewPostedAdvertisementPage";
 import AdminViewRentRequestPage from "./pages/AdminViewRentRequestPage/AdminViewRentRequestPage";
-import client from "./api_client/api_client";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import PopUpAd from "./components/shared/PopUpAd/PopUpAd";

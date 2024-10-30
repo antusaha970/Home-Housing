@@ -30,13 +30,13 @@ const PostAdvertisementReviewForm = ({
       } catch (error) {
         console.error({ error });
         if (error.response.status == 403) {
-          toast.error("Can't post review. You haven't booked it", {
-            position: "top-right",
-          });
+          toast.error("Can't post review. You haven't booked it");
+        } else if (error.response.status == 302) {
+          toast.warn(
+            "Can't post review. Your booking request haven't accepted yet"
+          );
         } else {
-          toast.error("Something went wrong", {
-            position: "top-right",
-          });
+          toast.error("Something went wrong");
         }
       }
     }
